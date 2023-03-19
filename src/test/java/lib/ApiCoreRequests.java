@@ -22,14 +22,6 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("Make a GET-request with no body")
-    public Response makeGetRequestWithNoBody(String url) {
-        return given()
-                .filter(new AllureRestAssured())
-                .get(url)
-                .andReturn();
-    }
-
     @Step("Make a GET-request with auth cookie only")
     public Response makeGetRequestWithCookieOnly(String url, String cookie) {
         return given()
@@ -65,8 +57,15 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+    @Step("Make a GET-request with no body")
+    public Response makeGetRequestWithNoBody(String url) {
+        return given()
+                .filter(new AllureRestAssured())
+                .get(url)
+                .andReturn();
+    }
 
-    @Step("Make a POST-request")
+    @Step("Make a POST-request with no body")
     public Response makePostRequestNoBody(String url) {
         return given()
                 .filter(new AllureRestAssured())

@@ -6,7 +6,9 @@ import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.hasKey;
@@ -69,6 +71,11 @@ public class BaseTestCase {
     protected String getSingleHeaderFromJson(Response response, String name, String pole) {
         response.then().assertThat().body("$", hasKey(name));
         return response.jsonPath().getString(name + pole);
+    }
+
+    protected List getSingleValueFromJson(Response response, String name, String pole) {
+        response.then().assertThat().body("$", hasKey(name));
+        return response.jsonPath().get(name + pole);
     }
 
 }

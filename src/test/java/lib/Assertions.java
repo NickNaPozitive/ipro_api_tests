@@ -28,6 +28,14 @@ public class Assertions {
         );
     }
 
+    public static void assertResponseTextEqualsToAnother(Response Response, String expectedAnswer, String result) {
+        assertEquals(
+                expectedAnswer,
+                result,
+                "Response text is not expected"
+        );
+    }
+
     public static void assertResponseCodeEquals(Response Response, int expectedStatusCode) {
         assertEquals(
                 expectedStatusCode,
@@ -42,7 +50,10 @@ public class Assertions {
 
 
     public static void assertJsonHasFields(Response Response, String[] expectedFieldNames) {
+        int i = 0;
         for (String expectedFieldName : expectedFieldNames) {
+            System.out.println(i);
+            i ++;
             Assertions.assertJsonHasField(Response, expectedFieldName);
         }
     }

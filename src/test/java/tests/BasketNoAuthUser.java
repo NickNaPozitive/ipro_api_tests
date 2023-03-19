@@ -8,6 +8,7 @@ import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.BaseTestCase;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +30,7 @@ public class BasketNoAuthUser extends BaseTestCase {
     @DisplayName("Проверка работы корзины с добавлением товара")
     public void testCheckBasketAddingAndDeleting() {
 
-        //LOGIN and ADDING
+        //LOGIN
         String valAdding = "1";
 
         Map<String, String> authData = new HashMap<>();
@@ -42,6 +43,8 @@ public class BasketNoAuthUser extends BaseTestCase {
         String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
         Assertions.assertResponseCodeEquals(responseGetAuth, 200);
 
+
+        //ADDING
         authData.put("session-id", sessionId);
 
         Response responseAddProduct = apiCoreRequests
