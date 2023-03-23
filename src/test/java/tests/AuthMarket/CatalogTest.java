@@ -23,6 +23,7 @@ public class CatalogTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     String urlForCatalog = "md6J4_hh4kG6YXLcEw99d";
+    String idGoods = "2415539";
 
     @Test
     @Owner(value = "Дегтярёв Никита Витальевич")
@@ -32,7 +33,6 @@ public class CatalogTest extends BaseTestCase {
     public void testAddingToFavoriteFromCatalog() {
 
         //LOGIN
-        String idGoods = "2415539";
 
         Response responseGetAuth = apiCoreRequests.
                 makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999d");
@@ -65,9 +65,8 @@ public class CatalogTest extends BaseTestCase {
     @Description("Это тест проверяет отрабатываение функционала замены для определенного товара")
     @DisplayName("Проверка функционала замены")
     public void testZamenaCatalog() {
-        //LOGIN
-        String idGoods = "2415539";
 
+        //LOGIN
         Response responseGetAuth = apiCoreRequests.
                 makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999d");
         String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
