@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ipro_api_tests" />
+        <module name="api-test-example-restassured" />
       </profile>
     </annotationProcessing>
   </component>

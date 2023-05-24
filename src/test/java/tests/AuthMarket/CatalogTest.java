@@ -22,7 +22,7 @@ public class CatalogTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
-    String urlForCatalog = "md6J4_hh4kG6YXLcEw99d";
+    String urlForCatalog = "5tAkPYa_GEw1KFF3z_1Ps";
     String idGoods = "2415539";
 
     @Test
@@ -35,7 +35,8 @@ public class CatalogTest extends BaseTestCase {
         //LOGIN
 
         Response responseGetAuth = apiCoreRequests.
-                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999d");
+                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999dn");
+        System.out.println(responseGetAuth);
         String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
         Assertions.assertResponseCodeEquals(responseGetAuth, 200);
 
@@ -44,11 +45,11 @@ public class CatalogTest extends BaseTestCase {
                 makeGetRequestWithNoBody("https://idev.etm.ru/_next/data/" + urlForCatalog + "/catalog.json?my_fav=1");
         String cnt = getSingleHeaderFromJson(responseGetCntFavorites, "pageProps", ".data.records");
         System.out.println(cnt);
-
+        Assertions.assertResponseCodeEquals(responseGetAuth, 200);
 
         //ADDING
-        Response responseAddProduct = apiCoreRequests
-                .makeGetRequestWithNoBody("https://idev.etm.ru/api/ipro/goods/" + idGoods + "/add_to_fav?session-id=" + sessionId);
+        Response responseAddProduct = apiCoreRequests.
+                makeGetRequestWithNoBody("https://idev.etm.ru/api/ipro/goods/" + idGoods + "/add_to_fav?session-id=" + sessionId);
         Assertions.assertResponseCodeEquals(responseAddProduct, 200);
         Assertions.assertNotJsonByName(responseAddProduct, "data", ".cnt", cnt);
 
@@ -68,7 +69,7 @@ public class CatalogTest extends BaseTestCase {
 
         //LOGIN
         Response responseGetAuth = apiCoreRequests.
-                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999d");
+                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999dn");
         String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
         Assertions.assertResponseCodeEquals(responseGetAuth, 200);
 
@@ -94,7 +95,7 @@ public class CatalogTest extends BaseTestCase {
         String idGoods = "34031304";
 
         Response responseGetAuth = apiCoreRequests.
-                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999d");
+                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999dn");
         String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
         Assertions.assertResponseCodeEquals(responseGetAuth, 200);
 
@@ -134,7 +135,7 @@ public class CatalogTest extends BaseTestCase {
 
         //LOGIN
         Response responseGetAuth = apiCoreRequests.
-                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999d");
+                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999dn");
 
         String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
         Assertions.assertResponseCodeEquals(responseGetAuth, 200);
@@ -164,32 +165,28 @@ public class CatalogTest extends BaseTestCase {
 
     }
 
-    @Test
-    @Owner(value = "Дегтярёв Никита Витальевич")
-    @Severity(value = SeverityLevel.CRITICAL)
-    @Description("Это тест входит в аккаунт market, добавляет товар, проверяет в корзине, удаляет и затем опять удаляет")
-    @DisplayName("Проверка работы корзины с добавлением товара")
-    public void testAddToCompare() {
-        String from_rus = "1";
-        String spec = "1";
-
-
-
-        //LOGIN
-        Response responseGetAuth = apiCoreRequests.
-                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999d");
-
-        String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
-        Assertions.assertResponseCodeEquals(responseGetAuth, 200);
-
-        //TAKE DATA FROM CATALOG
-        Response responseGetData = apiCoreRequests.
-                makeGetRequestWithNoBody("https://idev.etm.ru/_next/data/" + urlForCatalog +
-                        "/catalog/101010_kabeli_s_mednoy_tokoprovodjaschey_zhiloy.json?from_rus=" +
-                        from_rus + "&spec=" + spec + "&rows=20&page=1&nameCat=101010_kabeli_s_mednoy_tokoprovodjaschey_zhiloy");
-
-
-    }
-
-
+//    @Test
+//    @Owner(value = "Дегтярёв Никита Витальевич")
+//    @Severity(value = SeverityLevel.CRITICAL)
+//    @Description("Это тест входит в аккаунт market, добавляет товар, проверяет в корзине, удаляет и затем опять удаляет")
+//    @DisplayName("Проверка работы корзины с добавлением товара")
+//    public void testAddToCompare() {
+//        String from_rus = "1";
+//        String spec = "1";
+//
+//        //LOGIN
+//        Response responseGetAuth = apiCoreRequests.
+//                makePostRequestNoBody("https://idev.etm.ru/api/ipro/user/login?log=9692161158&pwd=20101999dn");
+//
+//        String sessionId = getSingleHeaderFromJson(responseGetAuth, "data", ".session");
+//        Assertions.assertResponseCodeEquals(responseGetAuth, 200);
+//
+//        //TAKE DATA FROM CATALOG
+//        Response responseGetData = apiCoreRequests.
+//                makeGetRequestWithNoBody("https://idev.etm.ru/_next/data/" + urlForCatalog +
+//                        "/catalog/101010_kabeli_s_mednoy_tokoprovodjaschey_zhiloy.json?from_rus=" +
+//                        from_rus + "&spec=" + spec + "&rows=20&page=1&nameCat=101010_kabeli_s_mednoy_tokoprovodjaschey_zhiloy");
+//
+//
+//    }
 }

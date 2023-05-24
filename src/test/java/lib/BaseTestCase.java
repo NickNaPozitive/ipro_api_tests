@@ -63,9 +63,9 @@ public class BaseTestCase {
         return value;
     }
 
-    protected int getIntFromJson(Response response, String name) {
+    protected String getStringFromJson(Response response, String name) {
         response.then().assertThat().body("$", hasKey(name));
-        return response.jsonPath().getInt(name);
+        return response.jsonPath().getString(name);
     }
 
     protected String getSingleHeaderFromJson(Response response, String name, String pole) {
